@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Headline, Description, Link } from './components';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     const { headline, description, link } = this.state;
     const { text: linkText, ...restLinkProps } = link;
-    const {href, rel, target, className, text} = restLinkProps;
+    const { href, rel, target, className } = restLinkProps;
 
     return (
       <main className="learn">
@@ -32,13 +32,6 @@ class App extends Component {
         </Link>
       </main>
     );
-    // return createElement(
-    //   'main',
-    //   { className: 'learn' },
-    //   createElement(Headline, {}, headline),
-    //   createElement(Description, {}, description),
-    //   createElement(Link, restLinkProps, linkText)
-    // );
   }
 }
 

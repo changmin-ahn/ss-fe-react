@@ -142,6 +142,9 @@ body {
   }
 
   .button {
+    display: inline-flex;
+    column-gap: 4px;
+    align-items: center;
     --background-color: rgba(var(--primary-rgb), 0.075);
     background: var(--background-color);
     color: rgba(var(--primary-rgb), 1);

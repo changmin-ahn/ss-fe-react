@@ -1,7 +1,13 @@
-export function Link(props) {
+export function Link({ icon, className, href, rel, target, children }) {
   return (
-    <a href={props.href} target={props.target} rel={props.rel}>
-      {props.children}
+    <a
+      // 속성 바인딩
+      className={className}
+      href={href}
+      target={target}
+      rel={rel}
+    >
+      {icon} {children}
     </a>
   );
 }

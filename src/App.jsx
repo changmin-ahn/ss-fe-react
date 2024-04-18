@@ -1,5 +1,6 @@
 import { useState, Component } from 'react';
-import { Description, Headline, Link } from './components';
+import { Description, Headline, Link } from '@/components';
+import { TermsAndConditions } from '@/components/terms-and-conditions.imperative';
 import { getPublic } from './utils';
 
 // class state(data)
@@ -66,31 +67,51 @@ class _App extends Component {
 // 이전에 실행될 때 기억(memory, like snapshot)된 값과
 // 현재 실행될 때 값을 비교해서 변경 사항이 감지되면
 // 화면(실제 DOM)을 업데이트 한다.
-function App() {
-  console.log("1");
+
+// eslint-disable-next-line no-unused-vars
+function __App() {
   // FLUX => React, Redux
   // 불변(immutable) 데이터 관리
   // 함수가 실행된 시점에서 상태 값은 변경할 수 없다.
   // tuple [state, setState]
-  const [headline] = useState('리액트 러닝 가이드');
-  const [description] = useState(
-    '리액트 라이브러리를 사용해 사용자 인터페이스를 구축하는 방법을 학습합니다.'
-  );
-  const [link] = useState({
-    className: 'button',
-    href: 'https://react.dev',
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    text: 'react.dev',
+  const [state, setState] = useState({
+    headline: '리액트 러닝 가이드',
+    description:
+      '리액트 라이브러리를 사용해 사용자 인터페이스를 구축하는 방법을 학습합니다.',
+    link: {
+      className: 'button',
+      href: 'https://react.dev',
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      text: 'react.dev',
+    },
+    number: 1000,
+    imageStyles: {
+      blockSize: 12,
+      inlinleSize: 12,
+      verticalAlign: -1,
+    },
   });
 
-  let [number, setNumber] = useState(1000);
+  const { headline, description, link, number, imageStyles } = state;
+
   const handleUpdateTheScreen = () => {
     console.log('handleUpdateTheScreen');
     // 선언형 프로그래밍 (React, Svelte, Vue, ...)
-    const nextNumber = number + 100;
+    // const nextNumber = number + 100;
+
     // 리액트 렌더 트리거(요청)
-    setNumber(nextNumber);
+    // setNumber(nextNumber);
+
+    // 이전 상태(객체)와 합성
+    const nextState = {
+      ...state,
+      number: number + 100,
+    };
+
+    console.log('REACT: [trigger]');
+    // console.log(nextState);
+    setState(nextState);
 
     // 명령형 프로그래밍 (DOM Script, jQuery)
     // mutation state ❌
@@ -100,11 +121,6 @@ function App() {
   };
 
   const announceText = '리액트 공식 문서 (새 탭 열림)';
-  const imageStyles = {
-    blockSize: 12,
-    inlinleSize: 12,
-    verticalAlign: -1,
-  };
 
   console.log('A');
   return (
@@ -135,6 +151,18 @@ function App() {
       </Link>
       {console.log('')}
     </main>
+  );
+}
+
+function App() {
+  return (
+    <div
+      style={{
+        padding: 40,
+      }}
+    >
+      <TermsAndConditions />
+    </div>
   );
 }
 

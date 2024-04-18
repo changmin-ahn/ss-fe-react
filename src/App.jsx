@@ -67,6 +67,7 @@ class _App extends Component {
 // 현재 실행될 때 값을 비교해서 변경 사항이 감지되면
 // 화면(실제 DOM)을 업데이트 한다.
 function App() {
+  console.log("1");
   // FLUX => React, Redux
   // 불변(immutable) 데이터 관리
   // 함수가 실행된 시점에서 상태 값은 변경할 수 없다.
@@ -85,6 +86,7 @@ function App() {
 
   let [number, setNumber] = useState(1000);
   const handleUpdateTheScreen = () => {
+    console.log('handleUpdateTheScreen');
     // 선언형 프로그래밍 (React, Svelte, Vue, ...)
     const nextNumber = number + 100;
     // 리액트 렌더 트리거(요청)
@@ -104,11 +106,13 @@ function App() {
     verticalAlign: -1,
   };
 
+  console.log('A');
   return (
     <main className="learn" data-testid="app">
       <Headline>{headline}</Headline>
       <Description message={description}></Description>
       <div style={{ marginBlockEnd: 30 }}>
+        {console.log('asdf')}
         <button type="button" onClick={handleUpdateTheScreen}>
           {number}
         </button>
@@ -129,6 +133,7 @@ function App() {
         />{' '}
         {link.text}
       </Link>
+      {console.log('')}
     </main>
   );
 }
